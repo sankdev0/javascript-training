@@ -85,6 +85,9 @@ function processMenu(promptText) {
             case "0":
                 wantsToQuit = true;
                 break;
+            case "1":
+                alert(showLinks(links));
+                break;
             case "2":
                 addLink(inputLinkData());
                 console.log(showLinks(links));
