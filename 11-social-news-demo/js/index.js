@@ -48,15 +48,10 @@ function getPromptText() {
     return promptText;
 }
 
-// Add the new link to the links array.
-function addLink(link) {
-    links.push(link);
-}
-
 // Return a string representing the links array
 function showLinks(links) {
     if (links.length == 0) {
-        return "";
+        return "There are no links";
     } else if (links.length == 1) {
         return links[0].show();
     } else {
@@ -71,6 +66,28 @@ function inputLinkData() {
     const url = prompt("Input link URL:");
     const author = prompt("Input link Auhor:");
     return new Link(id, title, url, author);
+}
+
+// Add the new link to the links array.
+function addLink(link) {
+    links.push(link);
+}
+
+// Delete the link with the id
+function deleteLink(id) {
+    for (const tempLink of links) {
+        if (tempLink.id === id) {
+            links.splice(links.indexOf(tempLink), 1);
+            return tempLink;
+        }
+    }
+    return null;
+}
+
+// Take use input of link id to delete
+function inputLinkId() {
+    const id = prompt("Input the id of the link you want to delete");
+    return id;
 }
 
 // Process user menu choices in the main app loop
@@ -91,6 +108,14 @@ function processMenu(promptText) {
             case "2":
                 addLink(inputLinkData());
                 console.log(showLinks(links));
+                break;
+            case "3":
+                const removedLink = deleteLink(inputLinkId());
+                if (removedLink == null) {
+                    alert("No links removed");
+                } else {
+                    alert("Link removed: " + removedLink.show());
+                }
                 break;
             default:
                 break;
