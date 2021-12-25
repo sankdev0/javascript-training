@@ -87,7 +87,7 @@ const averageRating = movies => {
     //     ratingSum += tempMovie.imdbRating;
     // }
     const ratingSum = movies.reduce((accumulator, movie) => accumulator + movie.imdbRating, 0);
-    return ratingSum/movies.length;
+    return ratingSum / movies.length;
 }
 
 // Demo usage.
